@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 09:56:36 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/12 14:35:55 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:42:01 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static	int			ft_isnegative(long int n)
 	return (sign);
 }
 
-void			*ft_calloc(size_t count, size_t size)
+void				*ft_calloc(size_t count, size_t size)
 {
 	void			*ret;
 	unsigned char	*s;
