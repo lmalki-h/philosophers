@@ -13,6 +13,7 @@ SRCS =	main.c \
 		free.c \
 		init.c \
 		print_status.c \
+		eat.c \
 
 SHARED = ft_atoi.c \
 		ft_itoa.c \
