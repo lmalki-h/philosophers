@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_one.h"
+#include "../inc/philo_two.h"
 
 static void	*routine_death(void *arg)
 {

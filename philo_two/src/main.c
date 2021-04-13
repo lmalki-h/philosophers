@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_one.h"
+#include "../inc/philo_two.h"
 
 static void	*monitor_simulation(void *arg)
 {
@@ -65,6 +65,8 @@ void		watch_dog(t_phil **phils, t_state *state)
 			i++;
 		}
 	}
+	while (state->at_table > 0)
+		;
 	sem_post(state->finish);
 }
 

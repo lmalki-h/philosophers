@@ -4,7 +4,7 @@ EXT = c
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 PTHREAD_LIB = -lpthread
-HEADER = $(DIR_INC)/philo_one.h
+HEADER = $(DIR_INC)/philo_two.h
 RM = rm
 RF = -rf
 

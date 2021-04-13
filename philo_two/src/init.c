@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_one.h"
+#include "../inc/philo_two.h"
 
 static void		create_sem(char *name, sem_t **sem, unsigned int value)
 {
