@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:21:19 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/13 13:39:34 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:34:18 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void		watch_dog(t_phil **phils, t_state *state)
 			phils[i]->death = true;
 			i++;
 		}
-		while (state->at_table > 0)
-			;
 	}
 	pthread_mutex_unlock(state->finish);
 }
