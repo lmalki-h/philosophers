@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:14:47 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/13 13:25:18 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:14:55 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			print_status(t_phil *phil, char *action)
 	ft_strlcat(buf, " ", LEN_BUF);
 	ft_strlcat(buf, action, LEN_BUF);
 	ft_strlcat(buf, "\n", LEN_BUF);
-	if (phil->state->at_table > 0)
+	if (!phil->state->death)
 		write(1, buf, ft_strlen(buf));
 	return (1);
 }
