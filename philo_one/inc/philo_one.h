@@ -36,6 +36,7 @@ typedef struct				s_phil
 	int						nb_meals;
 	pthread_mutex_t			*mutex;
 	struct s_state			*state;
+	bool				death;
 }							t_phil;
 
 void					*routine(void *arg);

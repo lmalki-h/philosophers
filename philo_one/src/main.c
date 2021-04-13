@@ -51,6 +51,25 @@ static int	start_threads(t_phil **phils, t_state *state)
 	return (SUCCESS);
 }
 
+void		watch_dog(t_phil **phils, t_state *state)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(state->finish);
+	if (state->death)
+	{
+		while (i < state->nb_phil)
+		{
+			phils[i]->death = true;
+			i++;
+		}
+		while (state->at_table > 0)
+			;
+	}
+	pthread_mutex_unlock(state->finish);
+
+}
 static void	start_simulation(t_phil **phils)
 {
 	t_state *state;
@@ -62,8 +81,7 @@ static void	start_simulation(t_phil **phils)
 		free_simulation(phils);
 		exit(FAILURE);
 	}
-	pthread_mutex_lock(state->finish);
-	pthread_mutex_unlock(state->finish);
+	watch_dog(phils, state);
 }
 
 int			main(int ac, char **av)

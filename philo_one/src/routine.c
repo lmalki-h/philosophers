@@ -17,7 +17,7 @@ static void	*routine_death(void *arg)
 	t_phil		*phil;
 
 	phil = (t_phil *)arg;
-	while (phil->nb_meals < phil->state->nb_meals)
+	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		pthread_mutex_lock(phil->mutex);
 		if (time_since(phil->time_of_last_meal) >= phil->state->time_to_die)
@@ -84,10 +84,10 @@ void		*routine(void *arg)
 	pthread_t	death;
 
 	phil = (t_phil *)arg;
-	phil->time_of_last_meal = phil->state->start_time; //get_time_in_ms();
+	phil->time_of_last_meal = phil->state->start_time;
 	pthread_create(&death, NULL, &routine_death, arg);
 	pthread_detach(death);
-	while (phil->nb_meals < phil->state->nb_meals)
+	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		eat(phil);
 		sleeps(phil);
