@@ -65,6 +65,8 @@ void		watch_dog(t_phil **phils, t_state *state)
 			i++;
 		}
 	}
+	while (state->at_table > 0)
+		usleep(100);
 	pthread_mutex_unlock(state->finish);
 }
 
