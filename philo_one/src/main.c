@@ -6,13 +6,13 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:21:19 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/12 20:42:50 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:39:34 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo_one.h"
 
-static void *monitor_simulation(void *arg)
+static void	*monitor_simulation(void *arg)
 {
 	t_state *state;
 
@@ -68,8 +68,8 @@ void		watch_dog(t_phil **phils, t_state *state)
 			;
 	}
 	pthread_mutex_unlock(state->finish);
-
 }
+
 static void	start_simulation(t_phil **phils)
 {
 	t_state *state;

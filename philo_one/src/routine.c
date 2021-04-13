@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:02:54 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/12 21:09:20 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:40:09 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,6 @@ static void	*routine_death(void *arg)
 		usleep(1000);
 	}
 	return ((void *)0);
-}
-
-void		take_forks(t_phil *phil)
-{
-	pthread_mutex_lock(phil->forks[FIRST]);
-	pthread_mutex_lock(phil->forks[SECOND]);
-}
-
-void		clean_forks(t_phil *phil)
-{
-	pthread_mutex_unlock(phil->forks[FIRST]);
-	pthread_mutex_unlock(phil->forks[SECOND]);
-}
-
-void		eat(t_phil *phil)
-{
-	take_forks(phil);
-	pthread_mutex_lock(phil->mutex);
-	phil->time_of_last_meal = get_time_in_ms();
-	pthread_mutex_unlock(phil->mutex);
-	pthread_mutex_lock(phil->state->print);
-	print_status(phil, TAKE_FORKS);
-	print_status(phil, EAT);
-	pthread_mutex_unlock(phil->state->print);
-	ft_usleep(phil->state->time_to_eat);
-	clean_forks(phil);
-	phil->nb_meals++;
 }
 
 void		sleeps(t_phil *phil)

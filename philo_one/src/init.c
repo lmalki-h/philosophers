@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 12:53:45 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/12 21:06:14 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:01:24 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ static t_phil				**init_philosophers(t_state *state,
 	pthread_mutex_t	*left;
 	int				i;
 
-	i = 0;
+	i = -1;
 	phil = (t_phil **)malloc(sizeof(t_phil *) * state->nb_phil);
 	if (!phil)
 		return (NULL);
-	while (i < state->nb_phil)
+	while (++i < state->nb_phil)
 	{
 		phil[i] = (t_phil *)malloc(sizeof(t_phil));
 		if (!phil[i])
@@ -96,7 +96,6 @@ static t_phil				**init_philosophers(t_state *state,
 		phil[i]->nb_meals = 0;
 		phil[i]->death = false;
 		phil[i]->mutex = init_mutexes(1);
-		i++;
 	}
 	return (phil);
 }
