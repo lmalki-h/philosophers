@@ -93,7 +93,7 @@ static int	start_simulation(t_phil **phils)
 		exit(SUCCESS);
 	}
 	else
-		watch_dog(pids, phils, state);
+		watch_dog(pids, state);
 	return (SUCCESS);
 }
 
