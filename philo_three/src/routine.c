@@ -26,7 +26,6 @@ static void	*routine_death(void *arg)
 			print_status(phil, DEAD);
 			phil->death = true;
 			sem_post(phil->mutex);
-			// sem_post(phil->state->print);
 			sem_post(phil->state->finish);
 			return ((void *)0);
 		}

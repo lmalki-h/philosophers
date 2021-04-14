@@ -45,6 +45,7 @@ static t_state	*init_state(int ac, char **av)
 		write(STDERR_FILENO, "Error: malloc\n", 14);
 		exit(-1);
 	}
+	state->death = false;
 	state->nb_phil = ft_atoi(av[1]);
 	state->time_to_die = ft_atoi(av[2]);
 	state->time_to_eat = ft_atoi(av[3]);
@@ -53,8 +54,6 @@ static t_state	*init_state(int ac, char **av)
 	create_sem(PRINT_SEM, &state->print, 1);
 	create_sem(FORKS_SEM, &state->forks, state->nb_phil);
 	create_sem(FINISH_SEM, &state->finish, 0);
-	// state->at_table = state->nb_phil;
-	// state->death = 0;
 	return (state);
 }
 

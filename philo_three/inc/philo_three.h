@@ -20,7 +20,8 @@
 # define FORKS_SEM "/forks"
 # define FINISH_SEM "/finish"
 # include <semaphore.h>
-
+# include <sys/types.h>
+# include <sys/wait.h>
 typedef struct				s_state
 {
 	int						nb_phil;
@@ -28,9 +29,8 @@ typedef struct				s_state
 	int						time_to_sleep;
 	int						time_to_eat;
 	int						nb_meals;
-	// sem_t					*at_table;
 	int						start_time;
-	// int						death;
+	bool					death;
 	sem_t					*print;
 	sem_t					*finish;
 	sem_t					*forks;

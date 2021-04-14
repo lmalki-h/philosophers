@@ -46,7 +46,7 @@ int			print_status(t_phil *phil, char *action)
 	char	*time;
 
 	buf[0] = '\0';
-	if (phil->death)
+	if (phil->state->death)
 		return (0);
 	time = ft_itoa(time_since(phil->state->start_time));
 	ft_strlcat(buf, time, LEN_BUF);
@@ -56,7 +56,7 @@ int			print_status(t_phil *phil, char *action)
 	ft_strlcat(buf, " ", LEN_BUF);
 	ft_strlcat(buf, action, LEN_BUF);
 	ft_strlcat(buf, "\n", LEN_BUF);
-	// if (phil->state->at_table > 0)
+	 if (!phil->state->death)
 		write(1, buf, ft_strlen(buf));
 	return (1);
 }
