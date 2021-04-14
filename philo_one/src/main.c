@@ -12,33 +12,12 @@
 
 #include "../inc/philo_one.h"
 
-static void	*monitor_simulation(void *arg)
-{
-	t_state *state;
-
-	state = (t_state *)arg;
-	while (state->at_table > 0)
-	{
-		usleep(100);
-	}
-	printf("Each philosopher ate %i times\n", state->nb_meals);
-	pthread_mutex_unlock(state->finish);
-	return ((void *)0);
-}
-
 static int	start_threads(t_phil **phils, t_state *state)
 {
 	int			i;
 	pthread_t	thread;
 
 	i = 0;
-	if (state->nb_meals < INT_MAX)
-	{
-		if (pthread_create(&thread, NULL, monitor_simulation, (void *)state))
-			return (FAILURE);
-		if (pthread_detach(thread))
-			return (FAILURE);
-	}
 	state->start_time = get_time_in_ms();
 	while (i < state->nb_phil)
 	{
@@ -51,26 +30,7 @@ static int	start_threads(t_phil **phils, t_state *state)
 	return (SUCCESS);
 }
 
-void		watch_dog(t_phil **phils, t_state *state)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_lock(state->finish);
-	if (state->death)
-	{
-		while (i < state->nb_phil)
-		{
-			phils[i]->death = true;
-			i++;
-		}
-	}
-	while (state->at_table > 0)
-		usleep(100);
-	pthread_mutex_unlock(state->finish);
-}
-
-static void	start_simulation(t_phil **phils)
+static void	do_simulation(t_phil **phils)
 {
 	t_state *state;
 
@@ -81,7 +41,11 @@ static void	start_simulation(t_phil **phils)
 		free_simulation(phils);
 		exit(FAILURE);
 	}
-	watch_dog(phils, state);
+	pthread_mutex_lock(state->finish);
+	while (state->at_table > 0)
+		usleep(100);
+	if (!state->death)
+		printf("Each philosopher ate %i times\n", state->nb_meals);
 }
 
 int			main(int ac, char **av)
@@ -94,7 +58,7 @@ int			main(int ac, char **av)
 	else
 	{
 		phils = init_simulation(ac, av);
-		start_simulation(phils);
+		do_simulation(phils);
 		free_simulation(phils);
 	}
 	return (SUCCESS);
