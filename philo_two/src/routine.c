@@ -17,7 +17,7 @@ static void	*routine_death(void *arg)
 	t_phil		*phil;
 
 	phil = (t_phil *)arg;
-	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
+	while (!phil->state->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		sem_wait(phil->mutex);
 		if (time_since(phil->time_of_last_meal) >= phil->state->time_to_die)
@@ -60,13 +60,15 @@ void		*routine(void *arg)
 	phil->time_of_last_meal = phil->state->start_time;
 	pthread_create(&death, NULL, &routine_death, arg);
 	pthread_detach(death);
-	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
+	while (!phil->state->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		eat(phil);
 		sleeps(phil);
 		think(phil);
 		usleep(100);
 	}
+	sem_wait(phil->state->update);
 	phil->state->at_table--;
+	sem_post(phil->state->update);
 	return ((void *)0);
 }

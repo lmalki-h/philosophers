@@ -18,6 +18,7 @@
 # define PRINT_SEM "/print"
 # define FORKS_SEM "/forks"
 # define FINISH_SEM "/finish"
+# define UPDATE_SEM "/update"
 # include <semaphore.h>
 
 typedef struct				s_state
@@ -31,6 +32,7 @@ typedef struct				s_state
 	int						start_time;
 	int						death;
 	sem_t					*print;
+	sem_t					*update;
 	sem_t					*finish;
 	sem_t					*forks;
 }							t_state;
@@ -42,7 +44,6 @@ typedef struct				s_phil
 	int						nb_meals;
 	sem_t					*mutex;
 	struct s_state			*state;
-	bool					death;
 }							t_phil;
 
 void						*routine(void *arg);

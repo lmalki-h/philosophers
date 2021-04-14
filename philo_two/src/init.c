@@ -53,6 +53,7 @@ static t_state	*init_state(int ac, char **av)
 	create_sem(PRINT_SEM, &state->print, 1);
 	create_sem(FORKS_SEM, &state->forks, state->nb_phil);
 	create_sem(FINISH_SEM, &state->finish, 0);
+	create_sem(UPDATE_SEM, &state->update, 1);
 	state->at_table = state->nb_phil;
 	state->death = 0;
 	return (state);
@@ -76,7 +77,6 @@ static t_phil	**init_philosophers(t_state *state)
 		phils[i]->id = ft_itoa(i + 1);
 		phils[i]->state = state;
 		phils[i]->nb_meals = 0;
-		phils[i]->death = false;
 		buf[0] = '\0';
 		ft_strlcat(buf, "/", LEN_BUF);
 		ft_strlcat(buf, phils[i]->id, LEN_BUF);

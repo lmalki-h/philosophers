@@ -17,12 +17,13 @@ static void	*monitor_simulation(void *arg)
 	t_state *state;
 
 	state = (t_state *)arg;
-	while (state->at_table > 0)
+	while (!state->death && state->at_table > 0)
 	{
 		usleep(100);
 	}
-	if (!state->death)
-		printf("Each philosopher ate %i times\n", state->nb_meals);
+	if (state->death)
+		return ((void *)0);
+	printf("Each philosopher ate %i times\n", state->nb_meals);
 	sem_post(state->finish);
 	return ((void *)0);
 }
@@ -52,25 +53,6 @@ static int	start_threads(t_phil **phils, t_state *state)
 	return (SUCCESS);
 }
 
-void		watch_dog(t_phil **phils, t_state *state)
-{
-	int	i;
-
-	i = 0;
-	sem_wait(state->finish);
-	if (state->death)
-	{
-		while (i < state->nb_phil)
-		{
-			phils[i]->death = true;
-			i++;
-		}
-	}
-	while (state->at_table > 0)
-		;
-	sem_post(state->finish);
-}
-
 static void	start_simulation(t_phil **phils)
 {
 	t_state *state;
@@ -82,7 +64,10 @@ static void	start_simulation(t_phil **phils)
 		free_simulation(phils);
 		exit(FAILURE);
 	}
-	watch_dog(phils, state);
+	sem_wait(state->finish);
+	while (state->at_table > 0)
+		usleep(100);
+	sem_post(state->finish);
 }
 
 int			main(int ac, char **av)

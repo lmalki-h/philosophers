@@ -20,12 +20,16 @@ void	free_state(t_state *state)
 		write(STDERR_FILENO, "Error: failed to unlink /forks\n", 31);
 	if (sem_unlink(FINISH_SEM))
 		write(STDERR_FILENO, "Error: failed to unlink /finish\n", 32);
+	if (sem_unlink(UPDATE_SEM))
+		write(STDERR_FILENO, "Error: failed to unlink /update\n", 31);
 	if (sem_close(state->print))
 		write(STDERR_FILENO, "Error: failed to close /print\n", 30);
 	if (sem_close(state->forks))
 		write(STDERR_FILENO, "Error: failed to close /forks\n", 30);
 	if (sem_close(state->finish))
 		write(STDERR_FILENO, "Error: failed to close /finish\n", 31);
+	if (sem_close(state->update))
+		write(STDERR_FILENO, "Error: failed to close /update\n", 31);
 	free(state);
 }
 
