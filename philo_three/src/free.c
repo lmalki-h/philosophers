@@ -6,19 +6,19 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:03:12 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/14 11:22:01 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/14 11:07:10 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_two.h"
+#include "../inc/philo_three.h"
 
 void	free_state(t_state *state)
 {
-	if (sem_unlink(PRINT_SEM))
+	if (sem_unlink("/print"))
 		write(STDERR_FILENO, "Error: failed to unlink /print\n", 31);
-	if (sem_unlink(FORKS_SEM))
+	if (sem_unlink("/forks"))
 		write(STDERR_FILENO, "Error: failed to unlink /forks\n", 31);
-	if (sem_unlink(FINISH_SEM))
+	if (sem_unlink("/finish"))
 		write(STDERR_FILENO, "Error: failed to unlink /finish\n", 32);
 	if (sem_close(state->print))
 		write(STDERR_FILENO, "Error: failed to close /print\n", 30);
