@@ -12,7 +12,7 @@
 
 #include "../inc/philo_three.h"
 
-int		watch_dog(pid_t *pids, t_phil **phils, t_state *state)
+int		watch_dog(pid_t *pids, t_state *state)
 {
 	int i = 0;
 	sem_wait(state->finish);

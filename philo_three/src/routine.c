@@ -68,7 +68,6 @@ int 	routine(void *arg)
 	}
 	if (phil->death)
 	{
-		printf("leaving because dead\n");
 		exit(DEATH);
 	}
 	else

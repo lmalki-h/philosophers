@@ -2,7 +2,7 @@ NAME= philo_three
 
 EXT = c
 CC = gcc
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror
 PTHREAD_LIB = -lpthread
 HEADER = $(DIR_INC)/philo_three.h
 RM = rm
