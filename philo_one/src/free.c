@@ -16,7 +16,6 @@ void	free_state(t_state *state)
 {
 	pthread_mutex_destroy(state->print);
 	free(state->print);
-	pthread_mutex_unlock(state->finish);
 	pthread_mutex_destroy(state->finish);
 	free(state->finish);
 	pthread_mutex_destroy(state->update);
