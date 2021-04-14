@@ -17,7 +17,7 @@ static void	*routine_death(void *arg)
 	t_phil		*phil;
 
 	phil = (t_phil *)arg;
-	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
+	while (!phil->state->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		pthread_mutex_lock(phil->mutex);
 		if (time_since(phil->time_of_last_meal) >= phil->state->time_to_die)
@@ -36,7 +36,7 @@ static void	*routine_death(void *arg)
 	return ((void *)0);
 }
 
-void		sleeps(t_phil *phil)
+static void		sleeps(t_phil *phil)
 {
 	pthread_mutex_lock(phil->state->print);
 	print_status(phil, SLEEP);
@@ -44,7 +44,7 @@ void		sleeps(t_phil *phil)
 	ft_usleep(phil->state->time_to_sleep);
 }
 
-void		think(t_phil *phil)
+static void		think(t_phil *phil)
 {
 	pthread_mutex_lock(phil->state->print);
 	print_status(phil, THINK);
@@ -60,13 +60,15 @@ void		*routine(void *arg)
 	phil->time_of_last_meal = phil->state->start_time;
 	pthread_create(&death, NULL, &routine_death, arg);
 	pthread_detach(death);
-	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
+	while (!phil->state->death && phil->nb_meals < phil->state->nb_meals)
 	{
 		eat(phil);
 		sleeps(phil);
 		think(phil);
 		usleep(100);
 	}
+	pthread_mutex_lock(phil->state->update);
 	phil->state->at_table--;
+	pthread_mutex_unlock(phil->state->update);
 	return ((void *)0);
 }

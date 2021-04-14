@@ -26,8 +26,9 @@ typedef struct				s_state
 	int						at_table;
 	int						start_time;
 	int						death;
-	pthread_mutex_t			*print;
-	pthread_mutex_t			*finish;
+	pthread_mutex_t					*print;
+	pthread_mutex_t					*finish;
+	pthread_mutex_t					*update;
 }							t_state;
 
 typedef struct				s_phil
@@ -38,7 +39,6 @@ typedef struct				s_phil
 	int						nb_meals;
 	pthread_mutex_t			*mutex;
 	struct s_state			*state;
-	bool					death;
 }							t_phil;
 
 void						*routine(void *arg);

@@ -64,6 +64,7 @@ static t_state				*init_state(int ac, char **av)
 	state->nb_meals = ac == 6 ? ft_atoi(av[5]) : INT_MAX;
 	state->print = init_mutexes(1);
 	state->finish = init_mutexes(1);
+	state->update = init_mutexes(1);
 	pthread_mutex_lock(state->finish);
 	state->at_table = state->nb_phil;
 	state->death = 0;
@@ -94,7 +95,7 @@ static t_phil				**init_philosophers(t_state *state,
 		phil[i]->forks[SECOND] = (i + 1) % 2 == 0 ? left : right;
 		phil[i]->state = state;
 		phil[i]->nb_meals = 0;
-		phil[i]->death = false;
+		//phil[i]->death = false;
 		phil[i]->mutex = init_mutexes(1);
 	}
 	return (phil);
