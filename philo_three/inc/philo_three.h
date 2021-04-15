@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:02:39 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:33:40 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:47:38 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 # define PHILO_THREE_H
 # include "../../shared/philosophers.h"
 # include <signal.h>
-# define NB_PHIL_MAX 200
-# define LEN_BUF 100
-# define PRINT_SEM "/print"
-# define FORKS_SEM "/forks"
-# define FINISH_SEM "/finish"
 # include <semaphore.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+
 typedef struct				s_state
 {
 	int						nb_phil;
@@ -53,6 +49,6 @@ t_phil						**init_simulation(int ac, char **av);
 int							print_status(t_phil *phil, char *action);
 void						eat(t_phil *phil);
 void						ft_strlcat(char *dst, const char *src, int len_dst);
-int							start_simulation(t_phil **phils);
+int							do_simulation(t_phil **phils);
 
 #endif

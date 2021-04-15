@@ -6,16 +6,18 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 11:33:00 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:33:24 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:51:03 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo_three.h"
 
-int		kill_processes(pid_t *pids, t_state *state)
+static int	kill_processes(pid_t *pids, int nb_phil)
 {
-	int i = 0;
-	while (i < state->nb_phil)
+	int	i;
+
+	i = 0;
+	while (i < nb_phil)
 	{
 		kill(pids[i], SIGTERM);
 		i++;
@@ -23,10 +25,10 @@ int		kill_processes(pid_t *pids, t_state *state)
 	return (SUCCESS);
 }
 
-void	*monitor_routine(t_state *state)
+static void	*monitor_routine(pid_t *pids, t_state *state)
 {
 	int		status;
-	int 	finished_eating;
+	int		finished_eating;
 
 	finished_eating = 0;
 	while (finished_eating < state->nb_phil)
@@ -41,10 +43,11 @@ void	*monitor_routine(t_state *state)
 	}
 	if (finished_eating == state->nb_phil)
 		printf("Each philosopher ate %i times\n", state->nb_meals);
+	kill_processes(pids, state->nb_phil);
 	return ((void *)0);
 }
 
-int		start_simulation(t_phil **phils)
+int			do_simulation(t_phil **phils)
 {
 	t_state		*state;
 	pid_t		pids[NB_PHIL_MAX];
@@ -57,9 +60,7 @@ int		start_simulation(t_phil **phils)
 	while (i < state->nb_phil)
 	{
 		if ((id = fork()) == 0)
-		{
 			break ;
-		}
 		pids[i] = id;
 		i++;
 	}
@@ -70,8 +71,7 @@ int		start_simulation(t_phil **phils)
 	}
 	else
 	{
-		monitor_routine(state);
-		kill_processes(pids, state);
+		monitor_routine(pids, state);
 	}
 	return (SUCCESS);
 }

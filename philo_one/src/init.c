@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 12:53:45 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/13 13:01:24 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:44:27 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static t_phil				**init_philosophers(t_state *state,
 		phil[i]->forks[SECOND] = (i + 1) % 2 == 0 ? left : right;
 		phil[i]->state = state;
 		phil[i]->nb_meals = 0;
-		//phil[i]->death = false;
 		phil[i]->mutex = init_mutexes(1);
 	}
 	return (phil);

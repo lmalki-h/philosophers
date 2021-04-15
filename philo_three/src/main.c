@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:21:19 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:32:33 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:47:32 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			main(int ac, char **av)
 	else
 	{
 		phils = init_simulation(ac, av);
-		start_simulation(phils);
+		do_simulation(phils);
 		free_simulation(phils);
 	}
 	return (SUCCESS);

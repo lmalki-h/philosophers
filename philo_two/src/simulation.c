@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 11:31:18 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:31:25 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:38:57 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	start_threads(t_phil **phils, t_state *state)
 	return (SUCCESS);
 }
 
-void	start_simulation(t_phil **phils)
+void		start_simulation(t_phil **phils)
 {
 	t_state *state;
 

@@ -6,13 +6,13 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:02:54 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/13 14:56:25 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:43:15 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo_one.h"
 
-static void	*routine_death(void *arg)
+static void		*routine_death(void *arg)
 {
 	t_phil		*phil;
 
@@ -51,7 +51,7 @@ static void		think(t_phil *phil)
 	pthread_mutex_unlock(phil->state->print);
 }
 
-void		*routine(void *arg)
+void			*routine(void *arg)
 {
 	t_phil		*phil;
 	pthread_t	death;

@@ -6,19 +6,13 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:02:39 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:32:04 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:42:47 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_TWO_H
 # define PHILO_TWO_H
 # include "../../shared/philosophers.h"
-# define NB_PHIL_MAX 200
-# define LEN_BUF 100
-# define PRINT_SEM "/print"
-# define FORKS_SEM "/forks"
-# define FINISH_SEM "/finish"
-# define UPDATE_SEM "/update"
 # include <semaphore.h>
 
 typedef struct				s_state

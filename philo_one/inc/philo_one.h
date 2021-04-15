@@ -6,15 +6,13 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:02:39 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:29:47 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:42:57 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
 # include "../../shared/philosophers.h"
-# define NB_PHIL_MAX 200
-# define LEN_BUF 100
 
 typedef struct				s_state
 {
@@ -26,9 +24,9 @@ typedef struct				s_state
 	int						at_table;
 	int						start_time;
 	int						death;
-	pthread_mutex_t					*print;
-	pthread_mutex_t					*finish;
-	pthread_mutex_t					*update;
+	pthread_mutex_t			*print;
+	pthread_mutex_t			*finish;
+	pthread_mutex_t			*update;
 }							t_state;
 
 typedef struct				s_phil

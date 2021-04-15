@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 09:56:56 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/12 19:49:18 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:41:59 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@
 # define FINISHED 21
 # define NB_MIN_ARG 5
 # define NB_MAX_ARG 6
+# define NB_PHIL_MAX 200
+# define LEN_BUF 100
+# define PRINT_SEM "/print"
+# define FORKS_SEM "/forks"
+# define FINISH_SEM "/finish"
+# define UPDATE_SEM "/update"
 
 size_t				get_time_in_ms(void);
 int					ft_atoi(char *str);

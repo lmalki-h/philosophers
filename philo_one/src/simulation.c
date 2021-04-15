@@ -6,7 +6,7 @@
 /*   By: lmalki-h <lmalki-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 11:29:00 by lmalki-h          #+#    #+#             */
-/*   Updated: 2021/04/15 11:34:08 by lmalki-h         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:44:08 by lmalki-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static int	start_threads(t_phil **phils, t_state *state)
 	return (SUCCESS);
 }
 
-void	do_simulation(t_phil **phils)
+void		do_simulation(t_phil **phils)
 {
-	t_state *state;
+	t_state	*state;
 
 	state = phils[0]->state;
 	if (start_threads(phils, state) == FAILURE)
