@@ -33,8 +33,8 @@ void		eat(t_phil *phil)
 	print_status(phil, EAT);
 	sem_post(phil->state->print);
 	phil->time_of_last_meal = get_time_in_ms();
-	sem_post(phil->mutex);
 	ft_usleep(phil->state->time_to_eat);
+	sem_post(phil->mutex);
 	clean_forks(phil);
 	phil->nb_meals++;
 }
