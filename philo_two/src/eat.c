@@ -28,12 +28,12 @@ void		eat(t_phil *phil)
 {
 	take_forks(phil);
 	sem_wait(phil->mutex);
-	phil->time_of_last_meal = get_time_in_ms();
-	sem_post(phil->mutex);
 	sem_wait(phil->state->print);
 	print_status(phil, TAKE_FORKS);
 	print_status(phil, EAT);
 	sem_post(phil->state->print);
+	phil->time_of_last_meal = get_time_in_ms();
+	sem_post(phil->mutex);
 	ft_usleep(phil->state->time_to_eat);
 	clean_forks(phil);
 	phil->nb_meals++;
