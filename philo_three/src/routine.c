@@ -56,7 +56,7 @@ int 	routine(void *arg)
 	pthread_t	death;
 
 	phil = (t_phil *)arg;
-	phil->time_of_last_meal = phil->state->start_time;
+	phil->time_of_last_meal = get_time_in_ms();
 	pthread_create(&death, NULL, &routine_death, arg);
 	pthread_detach(death);
 	while (!phil->death && phil->nb_meals < phil->state->nb_meals)
