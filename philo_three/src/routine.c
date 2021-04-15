@@ -27,12 +27,12 @@ static void	*routine_death(void *arg)
 			phil->death = true;
 			sem_post(phil->mutex);
 			sem_post(phil->state->finish);
-			return ((void *)0);
+			exit(DEATH);
 		}
 		sem_post(phil->mutex);
 		usleep(100);
 	}
-	return ((void *)0);
+	exit(FINISHED);
 }
 
 void		sleeps(t_phil *phil)
