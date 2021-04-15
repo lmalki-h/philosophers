@@ -28,13 +28,13 @@ void		eat(t_phil *phil)
 {
 	take_forks(phil);
 	pthread_mutex_lock(phil->mutex);
-	phil->time_of_last_meal = get_time_in_ms();
-	pthread_mutex_unlock(phil->mutex);
 	pthread_mutex_lock(phil->state->print);
 	print_status(phil, TAKE_FORKS);
 	print_status(phil, EAT);
+	phil->time_of_last_meal = get_time_in_ms();
 	pthread_mutex_unlock(phil->state->print);
 	ft_usleep(phil->state->time_to_eat);
 	clean_forks(phil);
+	pthread_mutex_unlock(phil->mutex);
 	phil->nb_meals++;
 }
