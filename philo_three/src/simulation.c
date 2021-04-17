@@ -43,7 +43,6 @@ static void	*monitor_routine(pid_t *pids, t_state *state)
 	}
 	if (finished_eating == state->nb_phil)
 		printf("Each philosopher ate %i times\n", state->nb_meals);
-	kill_processes(pids, state->nb_phil);
 	return ((void *)0);
 }
 
@@ -72,6 +71,7 @@ int			do_simulation(t_phil **phils)
 	else
 	{
 		monitor_routine(pids, state);
+		kill_processes(pids, state->nb_phil);
 	}
 	return (SUCCESS);
 }
